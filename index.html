@@ -12,11 +12,11 @@
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
-    />
-    <meta
-      http-equiv="X-Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
+      content="
+    default-src 'self';
+    style-src 'self' https://fonts.googleapis.com;
+    font-src https://fonts.gstatic.com;
+  "
     />
     <title>Simple Pomodoro</title>
   </head>
@@ -32,12 +32,12 @@
           <div class="semi left circle"></div>
         </div>
         <div class="counter">
-          <p><span class="mins">25</span>:<span>00</span></p>
+          <p><span class="mins">1</span>:<span class="secs">00</span></p>
         </div>
         <button class="btn-start">Start</button>
       </div>
     </div>
   </body>
 
-  <script src="main.js"></script>
+  <script src="script.js"></script>
 </html>
