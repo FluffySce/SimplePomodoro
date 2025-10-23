@@ -53,7 +53,7 @@ const startTimer = () => {
     }
   }, 1000);
 };
-
+//reset button also resets: pomosComp Count
 const resetBtn = document.querySelector(".btn-reset");
 resetBtn.addEventListener("click", () => {
   clearInterval(myInterval);
@@ -63,7 +63,13 @@ resetBtn.addEventListener("click", () => {
   totalSeconds = 25 * 60;
   startBtn.textContent = "Start";
   mainTimer();
-  callout.textContent;
+
+  //Reset Pomo counter
+  pomosCompleted = 0;
+  savePomos();
+  callout.textContent = `Pomodoros Completed: ${pomosCompleted}`;
+
+  document.querySelector("h1").textContent = "Pomodoro";
 });
 
 const sessionEnd = () => {
@@ -95,15 +101,22 @@ const sessionEnd = () => {
   isRunning = false;
   isPaused = false;
 };
+
+//Save Pomodcount in localStorage
 const savePomos = () => {
   localStorage.setItem("pomosCompleted", pomosCompleted);
 };
 
+//Load saved Pomodo
 const savedPomos = localStorage.getItem("pomosCompleted");
 if (savedPomos !== null) {
   pomosCompleted = Number(savedPomos);
-  callout.textContent = `Pomodoros Completed: ${pomosCompleted}`;
+} else {
+  pomosCompleted = 0;
 }
+
+//update callout at page load
+callout.textContent = `Pomodoros Completed: ${pomosCompleted}`;
 
 mainTimer();
 startBtn.addEventListener("click", startTimer);
